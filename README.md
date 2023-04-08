@@ -4,9 +4,9 @@ Este projeto é parte do curso da Alura sobre Armazenamento de Dados no Navegado
 
 ## Descrição do projeto
 
-O projeto consiste em uma aplicação simples que permite que o usuário adicione tarefas a uma lista de roupas. As tarefas são armazenadas localmente no navegador, de modo que, ao recarregar a página, as tarefas anteriormente adicionadas continuam disponíveis.
+O projeto consiste em uma aplicação simples que permite que o usuário adicione itens a serem colocados na mala de viagem em uma lista dimamica . Os itens são armazenadas localmente no navegador, de modo que, ao recarregar a página, os itens anteriormente adicionadas continuam disponíveis.
 
-A interface da aplicação é construída utilizando HTML, CSS e JavaScript. O código HTML define a estrutura da página, enquanto o CSS é utilizado para estilizar a página e torná-la mais atraente visualmente. O JavaScript é utilizado para implementar a lógica da aplicação, como adicionar roupas à lista.
+A interface da aplicação é construída utilizando HTML, CSS e JavaScript. O código HTML define a estrutura da página, enquanto o CSS é utilizado para estilizar a página e torná-la mais atraente visualmente. O JavaScript é utilizado para implementar a lógica da aplicação, como adicionar itens à lista.
 
 ## Como usar a aplicação
 
