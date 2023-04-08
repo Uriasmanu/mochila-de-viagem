@@ -40,10 +40,6 @@ form.addEventListener("submit", (evento) => {
         itens.push(itemAtual) // adiciona ele na lista
     }
 
-    criaElemento(itemAtual)
-
-    itens.push(itemAtual)
-
     localStorage.setItem("itens", JSON.stringify(itens))
 
     nome.value = ""
