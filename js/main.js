@@ -16,9 +16,28 @@ form.addEventListener("submit", (evento) => {
     const nome = evento.target.elements['nome']
     const quantidade = evento.target.elements['quantidade']
 
+    // Const para conferir se o elemento nome no array tens ja existe
+
+    const existe = itens.find (elemento => elemento.nome === nome.value);
+
     const itemAtual = {
-    "nome": nome.value,
-    "quantidade": quantidade.value
+        "nome": nome.value,
+        "quantidade": quantidade.value
+        }
+
+    // Condicional para conferir se o elemento 
+    if (existe) {
+        itemAtual.id = existe.id // esse existe.id referece ao item recem adicionado, se ele existe então substitui
+
+        atualizaElemento(itemAtual) // então a função recebe esse item atualizado
+
+        itens[existe.id] = itemAtual // não entendi o que acontece aqui
+    } else{
+        itemAtual.id = itens.length // Se o elemento não existe, então esse novo item recebe o id referente a posição dele no array
+
+        criaElemento(itemAtual) // cria um novo elemento
+
+        itens.push(itemAtual) // adiciona ele na lista
     }
 
     criaElemento(itemAtual)
@@ -39,9 +58,14 @@ function criaElemento(item) {
 
     const numeroItem = document.createElement('strong')
     numeroItem.innerHTML = item.quantidade
+    numeroItem.dataset.id = item.id //Não entendi muito bem como funciona essa parte
     novoItem.appendChild(numeroItem)
 
     novoItem.innerHTML += item.nome
 
     lista.appendChild(novoItem)
+}
+
+function atualizaElemento(item) {
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade // Não entendi como funciona esta parte
 }
