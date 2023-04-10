@@ -27,17 +27,17 @@ form.addEventListener("submit", (evento) => {
 
     // Condicional para conferir se o elemento 
     if (existe) {
-        itemAtual.id = existe.id // esse existe.id referece ao item recem adicionado, se ele existe então substitui
+        itemAtual.id = existe.id
 
-        atualizaElemento(itemAtual) // então a função recebe esse item atualizado
+        atualizaElemento(itemAtual)
+//Refatoração da condicional if else, atualizando um id para cada item
+        itens[itens.findIndex(elemento => elemento.id === existe.id)] = itemAtual
+    } else {
+        itemAtual.id = itens[itens.length -1] ? (itens[itens.length-1]).id + 1 : 0; //if else em operador ternario
 
-        itens[existe.id] = itemAtual // não entendi o que acontece aqui
-    } else{
-        itemAtual.id = itens.length // Se o elemento não existe, então esse novo item recebe o id referente a posição dele no array
+        criaElemento(itemAtual)
 
-        criaElemento(itemAtual) // cria um novo elemento
-
-        itens.push(itemAtual) // adiciona ele na lista
+        itens.push(itemAtual)
     }
 
     localStorage.setItem("itens", JSON.stringify(itens))
@@ -59,9 +59,33 @@ function criaElemento(item) {
 
     novoItem.innerHTML += item.nome
 
+    novoItem.appendChild(botaoDeleta(item.id)) // Referenciar a função botaoDeleta no nó da função principal
+
     lista.appendChild(novoItem)
 }
 
 function atualizaElemento(item) {
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade // Não entendi como funciona esta parte
+}
+
+//Função para criar botão com evento de click nos itens, e retornar os itens clicados
+function botaoDeleta(id) {
+    const elementoBotao = document.createElement("button")
+    elementoBotao.innerText = "X"
+
+    elementoBotao.addEventListener("click", function() {
+        deletaElemento(this.parentNode, id)
+    })
+
+    return elementoBotao
+}
+
+//Função para deletar os itens enviados da função botaoDeleta no array de itens e no navegador
+
+function deletaElemento(tag, id) { 
+    tag.remove()
+
+    itens.splice(itens.findIndex(elemento => elemento.id === id), 1)
+
+    localStorage.setItem("itens", JSON.stringify(itens))
 }
